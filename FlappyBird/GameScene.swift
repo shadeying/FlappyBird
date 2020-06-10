@@ -27,7 +27,7 @@ class GameScene: SKScene {
         /* Set reference to scroll layer node */
         scrollLayer = self.childNode(withName: "scrollLayer")
         
-        /* Set reference to obstacle layer node */
+        /* Set reference to pipe layer node */
         pipeLayer = self.childNode(withName: "pipeLayer")
     }
 
@@ -73,6 +73,7 @@ class GameScene: SKScene {
         sinceTouch += fixedDelta
         scrollWorld()
         movePipes()
+        spawnTimer += fixedDelta
     }
     
     func scrollWorld() {
@@ -98,16 +99,33 @@ class GameScene: SKScene {
         /* Move pipes here */
         pipeLayer.position.x -= scrollSpeed * CGFloat(fixedDelta)
         
-        /* Loop through obstacle layer nodes */
+        /* Loop through pipe layer nodes */
         for pipe in pipeLayer.children as! [SKReferenceNode] {
-             /* Get obstacle node position, convert node position to scene space */
+             /* Get pipe node position, convert node position to scene space */
             let pipePosition = pipeLayer.convert(pipe.position, to: self)
             
-            /* Check if obstacle has left the scene */
+            /* Check if pipe has left the scene */
             if(pipePosition.x <= 0) {
-                /* Remove obstacle node from obstacle layer */
+                /* Remove pipe node from pipe layer */
                 pipe.removeFromParent()
             }
+        }
+        
+        /* Add new pipe? */
+        if(spawnTimer >= 1.5) {
+            /* Create a new pipe reference object using our pipe resource */
+            let resourcePath = Bundle.main.path(forResource: "Pipe", ofType: "sks")
+            let newPipe = SKReferenceNode(url: NSURL(fileURLWithPath: resourcePath!) as URL)
+            pipeLayer.addChild(newPipe)
+            
+            /* Generate new pipe position, start just outside screen and with a random y value */
+            let randomPosition = CGPoint(x: 352, y: CGFloat.random(in: 234...382))
+            
+            /* Convert new node position back to pipe layer space */
+            newPipe.position = self.convert(randomPosition, to: pipeLayer)
+            
+            // Reset spawn timer
+            spawnTimer = 0
         }
     }
 }
