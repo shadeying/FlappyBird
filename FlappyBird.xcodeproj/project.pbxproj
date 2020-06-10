@@ -15,6 +15,10 @@
 		334840CC24907FF500B91C1F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 334840CA24907FF500B91C1F /* Main.storyboard */; };
 		334840CE24907FFA00B91C1F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 334840CD24907FFA00B91C1F /* Assets.xcassets */; };
 		334840D124907FFA00B91C1F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 334840CF24907FFA00B91C1F /* LaunchScreen.storyboard */; };
+		334840DB249080ED00B91C1F /* sfx_goal.caf in Resources */ = {isa = PBXBuildFile; fileRef = 334840D9249080ED00B91C1F /* sfx_goal.caf */; };
+		334840DC249080ED00B91C1F /* sfx_flap.caf in Resources */ = {isa = PBXBuildFile; fileRef = 334840DA249080ED00B91C1F /* sfx_flap.caf */; };
+		334840DE24908F1A00B91C1F /* FlappyBird.sks in Resources */ = {isa = PBXBuildFile; fileRef = 334840DD24908F1A00B91C1F /* FlappyBird.sks */; };
+		334840E024909F4500B91C1F /* CGFloatExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 334840DF24909F4500B91C1F /* CGFloatExtensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +32,10 @@
 		334840CD24907FFA00B91C1F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		334840D024907FFA00B91C1F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		334840D224907FFA00B91C1F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		334840D9249080ED00B91C1F /* sfx_goal.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = sfx_goal.caf; sourceTree = "<group>"; };
+		334840DA249080ED00B91C1F /* sfx_flap.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = sfx_flap.caf; sourceTree = "<group>"; };
+		334840DD24908F1A00B91C1F /* FlappyBird.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = FlappyBird.sks; sourceTree = "<group>"; };
+		334840DF24909F4500B91C1F /* CGFloatExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CGFloatExtensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,16 +69,28 @@
 			isa = PBXGroup;
 			children = (
 				334840C024907FF500B91C1F /* AppDelegate.swift */,
+				334840DF24909F4500B91C1F /* CGFloatExtensions.swift */,
+				334840DD24908F1A00B91C1F /* FlappyBird.sks */,
 				334840C224907FF500B91C1F /* GameScene.sks */,
 				334840C424907FF500B91C1F /* Actions.sks */,
 				334840C624907FF500B91C1F /* GameScene.swift */,
 				334840C824907FF500B91C1F /* GameViewController.swift */,
 				334840CA24907FF500B91C1F /* Main.storyboard */,
 				334840CD24907FFA00B91C1F /* Assets.xcassets */,
+				334840D8249080ED00B91C1F /* SFX */,
 				334840CF24907FFA00B91C1F /* LaunchScreen.storyboard */,
 				334840D224907FFA00B91C1F /* Info.plist */,
 			);
 			path = FlappyBird;
+			sourceTree = "<group>";
+		};
+		334840D8249080ED00B91C1F /* SFX */ = {
+			isa = PBXGroup;
+			children = (
+				334840D9249080ED00B91C1F /* sfx_goal.caf */,
+				334840DA249080ED00B91C1F /* sfx_flap.caf */,
+			);
+			path = SFX;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -134,8 +154,11 @@
 				334840CC24907FF500B91C1F /* Main.storyboard in Resources */,
 				334840C324907FF500B91C1F /* GameScene.sks in Resources */,
 				334840CE24907FFA00B91C1F /* Assets.xcassets in Resources */,
+				334840DC249080ED00B91C1F /* sfx_flap.caf in Resources */,
 				334840D124907FFA00B91C1F /* LaunchScreen.storyboard in Resources */,
+				334840DE24908F1A00B91C1F /* FlappyBird.sks in Resources */,
 				334840C524907FF500B91C1F /* Actions.sks in Resources */,
+				334840DB249080ED00B91C1F /* sfx_goal.caf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -148,6 +171,7 @@
 			files = (
 				334840C724907FF500B91C1F /* GameScene.swift in Sources */,
 				334840C924907FF500B91C1F /* GameViewController.swift in Sources */,
+				334840E024909F4500B91C1F /* CGFloatExtensions.swift in Sources */,
 				334840C124907FF500B91C1F /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
