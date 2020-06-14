@@ -19,6 +19,7 @@
 		334840DC249080ED00B91C1F /* sfx_flap.caf in Resources */ = {isa = PBXBuildFile; fileRef = 334840DA249080ED00B91C1F /* sfx_flap.caf */; };
 		334840DE24908F1A00B91C1F /* FlappyBird.sks in Resources */ = {isa = PBXBuildFile; fileRef = 334840DD24908F1A00B91C1F /* FlappyBird.sks */; };
 		334840E024909F4500B91C1F /* CGFloatExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 334840DF24909F4500B91C1F /* CGFloatExtensions.swift */; };
+		3364D6B024968D7B0000065F /* GameEffects.sks in Resources */ = {isa = PBXBuildFile; fileRef = 3364D6AF24968D7B0000065F /* GameEffects.sks */; };
 		339B5E4F2490C73800421261 /* Pipe.sks in Resources */ = {isa = PBXBuildFile; fileRef = 339B5E4E2490C73800421261 /* Pipe.sks */; };
 /* End PBXBuildFile section */
 
@@ -37,6 +38,7 @@
 		334840DA249080ED00B91C1F /* sfx_flap.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = sfx_flap.caf; sourceTree = "<group>"; };
 		334840DD24908F1A00B91C1F /* FlappyBird.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = FlappyBird.sks; sourceTree = "<group>"; };
 		334840DF24909F4500B91C1F /* CGFloatExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CGFloatExtensions.swift; sourceTree = "<group>"; };
+		3364D6AF24968D7B0000065F /* GameEffects.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameEffects.sks; sourceTree = "<group>"; };
 		339B5E4E2490C73800421261 /* Pipe.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Pipe.sks; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -77,6 +79,7 @@
 				334840C224907FF500B91C1F /* GameScene.sks */,
 				334840C424907FF500B91C1F /* Actions.sks */,
 				334840C624907FF500B91C1F /* GameScene.swift */,
+				3364D6AF24968D7B0000065F /* GameEffects.sks */,
 				334840C824907FF500B91C1F /* GameViewController.swift */,
 				334840CA24907FF500B91C1F /* Main.storyboard */,
 				334840CD24907FFA00B91C1F /* Assets.xcassets */,
@@ -160,6 +163,7 @@
 				339B5E4F2490C73800421261 /* Pipe.sks in Resources */,
 				334840DC249080ED00B91C1F /* sfx_flap.caf in Resources */,
 				334840D124907FFA00B91C1F /* LaunchScreen.storyboard in Resources */,
+				3364D6B024968D7B0000065F /* GameEffects.sks in Resources */,
 				334840DE24908F1A00B91C1F /* FlappyBird.sks in Resources */,
 				334840C524907FF500B91C1F /* Actions.sks in Resources */,
 				334840DB249080ED00B91C1F /* sfx_goal.caf in Resources */,

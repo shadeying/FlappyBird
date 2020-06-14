@@ -8,18 +8,25 @@
 
 import SpriteKit
 
-class GameScene: SKScene {
+enum GameSceneState {
+    case Active, GameOver, Wait
+}
+
+class GameScene: SKScene, SKPhysicsContactDelegate {
     
     var flappybird: SKSpriteNode!
     var scrollLayer: SKNode!
     var pipeLayer: SKNode!
     var sinceTouch : CFTimeInterval = 0 // keep track of touch time to turn the flappybird
     var spawnTimer: CFTimeInterval = 0
+    var gameState: GameSceneState = .Wait // game management
+    var scoreLabel: SKLabelNode!
+    var points = 0
     let fixedDelta: CFTimeInterval = 1.0 / 60.0 // 60 FPS
     let scrollSpeed: CGFloat = 160
     
     override func didMove(to view: SKView) {
-        /* Set up your scene here */
+        /* Set up scene */
         
         /* Recursive node search for 'flappybird' (child of referenced node) */
         flappybird = self.childNode(withName: "//flappybird") as? SKSpriteNode
@@ -29,10 +36,43 @@ class GameScene: SKScene {
         
         /* Set reference to pipe layer node */
         pipeLayer = self.childNode(withName: "pipeLayer")
+        
+        scoreLabel = self.childNode(withName: "scoreLabel") as? SKLabelNode
+        
+        /* Set physics contact delegate */
+        physicsWorld.contactDelegate = self
+        
+        /* Reset Score label */
+        scoreLabel.text = String(points)
+        
+    }
+    
+    func restartGame() {
+        /* Grab reference to SpriteKit view */
+        let skView = self.view! as SKView
+        
+        /* Load Game scene */
+        let scene = GameScene(fileNamed: "GameScene")! as GameScene
+        
+        /* Ensure correct aspect mode */
+        scene.scaleMode = .aspectFill
+        
+        /* Restart game scene */
+        skView.presentScene(scene)
     }
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
        /* Called when a touch begins */
+        if gameState == .Wait {
+            gameState = .Active
+        }
+        
+        if gameState == .GameOver {
+            return
+        }
+        
+        /* Reset velocity, helps improve response against cumulative falling velocity */
+        flappybird.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
         
         /* Apply vertical impulse */
         flappybird.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 300))
@@ -50,6 +90,10 @@ class GameScene: SKScene {
 
     override func update(_ currentTime: CFTimeInterval) {
         /* Called before each frame is rendered */
+        /* Skip game update if game no longer active */
+        if gameState != .Active {
+            return
+        }
         
         /* Grab current velocity */
         let velocityY = flappybird.physicsBody?.velocity.dy ?? 0
@@ -66,7 +110,7 @@ class GameScene: SKScene {
         }
 
         /* Clamp rotation */
-        let _ = flappybird.zRotation.clamp(v1: CGFloat(-20).degreesToRadians(),CGFloat(30).degreesToRadians())
+        let _ = flappybird.zRotation.clamp(v1: CGFloat(-30).degreesToRadians(),CGFloat(30).degreesToRadians())
         let _ = flappybird.physicsBody?.angularVelocity.clamp(v1: -2, 2)
 
         /* Update last touch timer */
@@ -124,8 +168,71 @@ class GameScene: SKScene {
             /* Convert new node position back to pipe layer space */
             newPipe.position = self.convert(randomPosition, to: pipeLayer)
             
-            // Reset spawn timer
+            /* Reset spawn timer */
             spawnTimer = 0
         }
     }
+    
+    func didBeginContact(contact: SKPhysicsContact) {
+        print("Hello")
+        /* Called only when the game is running */
+        if gameState != .Active {
+            return
+        }
+        
+        /* Get references to bodies involved in collision */
+        let contactA:SKPhysicsBody = contact.bodyA
+        let contactB:SKPhysicsBody = contact.bodyB
+        
+        /* Get references to the physics body parent nodes */
+        let nodeA = contactA.node!
+        let nodeB = contactB.node!
+        
+        /* Check if the bird has passed through the 'goal' */
+        if nodeA.name == "goal" || nodeB.name == "goal" {
+            /* Increment points */
+            points += 1
+            /* Update score label */
+            scoreLabel.text = String(points)
+            return
+        }
+        
+        print("Game over!")
+        
+        /* Game over if bird touches anything */
+        /* Change game state to game over */
+        gameState = .GameOver
+        
+        /* Stop any new angular velocity being applied */
+        flappybird.physicsBody?.allowsRotation = false
+        
+        /* Reset angular velocity */
+        flappybird.physicsBody?.angularVelocity = 0
+        
+        /* Stop flapping animation */
+        flappybird.removeAllActions()
+        
+        /* Create flappybird death action */
+        let flappybirdDeath = SKAction.run({
+            /* Put bird face down in the dirt */
+            self.flappybird.zRotation = CGFloat(-90).degreesToRadians()
+             /* Stop bird from colliding with anything else */
+            self.flappybird.physicsBody?.collisionBitMask = 0
+        })
+        
+        /* Run death action */
+        flappybird.run(flappybirdDeath)
+        
+        /* Load the shake action resource */
+        let shakeScene:SKAction = SKAction.init(named: "Shake")!
+        
+        /* Loop through all nodes  */
+        for node in self.children {
+            /* Apply effect each ground node */
+            node.run(shakeScene)
+        }
+        
+        restartGame()
+    }
+    
 }
