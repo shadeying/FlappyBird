@@ -19,7 +19,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var pipeLayer: SKNode!
     var sinceTouch : CFTimeInterval = 0 // keep track of touch time to turn the flappybird
     var spawnTimer: CFTimeInterval = 0
-    var gameState: GameSceneState = .Wait // game management
+    var gameState: GameSceneState = .Active // game management
     var scoreLabel: SKLabelNode!
     var points = 0
     let fixedDelta: CFTimeInterval = 1.0 / 60.0 // 60 FPS
@@ -59,12 +59,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         /* Restart game scene */
         skView.presentScene(scene)
+        gameState = .Wait
     }
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
        /* Called when a touch begins */
-        if gameState == .Wait {
-            gameState = .Active
+        if gameState != .Active {
+            restartGame()
         }
         
         if gameState == .GameOver {
@@ -110,7 +111,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
 
         /* Clamp rotation */
-        let _ = flappybird.zRotation.clamp(v1: CGFloat(-30).degreesToRadians(),CGFloat(30).degreesToRadians())
+        let _ = flappybird.zRotation.clamp(v1: CGFloat(-20).degreesToRadians(),CGFloat(20).degreesToRadians())
         let _ = flappybird.physicsBody?.angularVelocity.clamp(v1: -2, 2)
 
         /* Update last touch timer */
@@ -173,8 +174,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
     }
     
-    func didBeginContact(contact: SKPhysicsContact) {
-        print("Hello")
+    func didBegin(_ contact: SKPhysicsContact) {
         /* Called only when the game is running */
         if gameState != .Active {
             return
@@ -197,8 +197,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             return
         }
         
-        print("Game over!")
-        
         /* Game over if bird touches anything */
         /* Change game state to game over */
         gameState = .GameOver
@@ -215,7 +213,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         /* Create flappybird death action */
         let flappybirdDeath = SKAction.run({
             /* Put bird face down in the dirt */
-            self.flappybird.zRotation = CGFloat(-90).degreesToRadians()
+            self.flappybird.zRotation = CGFloat(80).degreesToRadians()
              /* Stop bird from colliding with anything else */
             self.flappybird.physicsBody?.collisionBitMask = 0
         })
@@ -231,8 +229,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             /* Apply effect each ground node */
             node.run(shakeScene)
         }
-        
-        restartGame()
     }
     
 }

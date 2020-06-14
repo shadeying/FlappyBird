@@ -39,6 +39,7 @@
 		334840DD24908F1A00B91C1F /* FlappyBird.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = FlappyBird.sks; sourceTree = "<group>"; };
 		334840DF24909F4500B91C1F /* CGFloatExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CGFloatExtensions.swift; sourceTree = "<group>"; };
 		3364D6AF24968D7B0000065F /* GameEffects.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameEffects.sks; sourceTree = "<group>"; };
+		3364D6B124969E1F0000065F /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		339B5E4E2490C73800421261 /* Pipe.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Pipe.sks; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -58,6 +59,7 @@
 			children = (
 				334840BF24907FF500B91C1F /* FlappyBird */,
 				334840BE24907FF500B91C1F /* Products */,
+				3364D6B124969E1F0000065F /* README.md */,
 			);
 			sourceTree = "<group>";
 		};
