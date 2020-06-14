@@ -20,6 +20,7 @@
 		334840DE24908F1A00B91C1F /* FlappyBird.sks in Resources */ = {isa = PBXBuildFile; fileRef = 334840DD24908F1A00B91C1F /* FlappyBird.sks */; };
 		334840E024909F4500B91C1F /* CGFloatExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 334840DF24909F4500B91C1F /* CGFloatExtensions.swift */; };
 		3364D6B024968D7B0000065F /* GameEffects.sks in Resources */ = {isa = PBXBuildFile; fileRef = 3364D6AF24968D7B0000065F /* GameEffects.sks */; };
+		338AC7BF2496B99500EC6FC5 /* flappydemo.png in Resources */ = {isa = PBXBuildFile; fileRef = 338AC7BE2496B99500EC6FC5 /* flappydemo.png */; };
 		339B5E4F2490C73800421261 /* Pipe.sks in Resources */ = {isa = PBXBuildFile; fileRef = 339B5E4E2490C73800421261 /* Pipe.sks */; };
 /* End PBXBuildFile section */
 
@@ -40,6 +41,7 @@
 		334840DF24909F4500B91C1F /* CGFloatExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CGFloatExtensions.swift; sourceTree = "<group>"; };
 		3364D6AF24968D7B0000065F /* GameEffects.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameEffects.sks; sourceTree = "<group>"; };
 		3364D6B124969E1F0000065F /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		338AC7BE2496B99500EC6FC5 /* flappydemo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = flappydemo.png; sourceTree = "<group>"; };
 		339B5E4E2490C73800421261 /* Pipe.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Pipe.sks; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -60,6 +62,7 @@
 				334840BF24907FF500B91C1F /* FlappyBird */,
 				334840BE24907FF500B91C1F /* Products */,
 				3364D6B124969E1F0000065F /* README.md */,
+				338AC7BE2496B99500EC6FC5 /* flappydemo.png */,
 			);
 			sourceTree = "<group>";
 		};
@@ -159,6 +162,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				338AC7BF2496B99500EC6FC5 /* flappydemo.png in Resources */,
 				334840CC24907FF500B91C1F /* Main.storyboard in Resources */,
 				334840C324907FF500B91C1F /* GameScene.sks in Resources */,
 				334840CE24907FFA00B91C1F /* Assets.xcassets in Resources */,
